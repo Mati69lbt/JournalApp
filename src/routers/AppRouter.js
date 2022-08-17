@@ -29,9 +29,12 @@ const AppRouter = () => {
 
   return (
     <Routes>
-      <Route path="auth/*" element={<AuthRouter />} />
-      <Route path="/*" element={<JournalScren />} />
-      <Route path="*" element={<Navigate to="/auth/login" />} />
+      {isLoggingIn ? (
+        <Route path="/*" element={<JournalScren />} />
+      ) : (
+        <Route path="auth/*" element={<AuthRouter />} />
+      )}
+      <Route path="/*" element={<Navigate to="/auth/login" />} />
     </Routes>
   );
 };
