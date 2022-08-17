@@ -1,4 +1,4 @@
-import { async } from "@firebase/util";
+import Swal from "sweetalert2";
 import {
   signInWithPopup,
   createUserWithEmailAndPassword,
@@ -22,8 +22,8 @@ export const startLoginEmailPassword = (email, password) => {
         dispatch(finishLoading());
       })
       .catch((error) => {
-        console.log(error.code, error.message);
         dispatch(finishLoading());
+        Swal.fire("Error", error.message, "error");
       });
   };
 };
@@ -36,7 +36,7 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
         dispatch(login(user.uid, user.displayName));
       })
       .catch((error) => {
-        console.log(error.code, error.message);
+        Swal.fire("Error", error.message, "error");
       });
   };
 };
