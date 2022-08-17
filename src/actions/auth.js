@@ -1,8 +1,10 @@
+import { async } from "@firebase/util";
 import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   updateProfile,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { auth, provider } from "../firebase/firebase-config";
 
@@ -53,4 +55,16 @@ export const login = (uid, displayName) => ({
     uid,
     displayName,
   },
+});
+
+export const startLogout = () => {
+  return async (dispatch) => {
+    await signOut(auth).then(() => {
+      dispatch(logout());
+    });
+  };
+};
+
+export const logout = () => ({
+  type: types.logout,
 });
