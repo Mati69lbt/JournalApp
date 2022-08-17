@@ -2,16 +2,27 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   updateProfile,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth, provider } from "../firebase/firebase-config";
 
 import { types } from "../types/types";
+import { finishLoading, startLoading } from "./ui";
 
 export const startLoginEmailPassword = (email, password) => {
+  // MUY IMPORTANTE: se crearon acciones para bloquear el boton mientras se carga la informacion
   return (dispatch) => {
-    setTimeout(() => {
-      dispatch(login(123, "Roberto"));
-    }, 3500);
+    dispatch(startLoading());
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        dispatch(login(user.uid, user.displayName));
+        dispatch(finishLoading());
+      })
+      .catch((error) => {
+        console.log(error.code, error.message);
+        dispatch(finishLoading());
+      });
   };
 };
 
