@@ -6,6 +6,7 @@ import JournalScren from "../components/journal/JournalScreen";
 import { auth } from "../firebase/firebase-config";
 import AuthRouter from "./AuthRouter";
 import { login } from "../actions/auth";
+import { startLoadingNotes } from "../actions/notes";
 
 const AppRouter = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const AppRouter = () => {
         const { uid, displayName } = user;
         dispatch(login(uid, displayName));
         setIsLoggingIn(true);
+        dispatch(startLoadingNotes(uid));
       } else {
         setIsLoggingIn(false);
       }
