@@ -1,5 +1,11 @@
 import { FirebaseDB } from "../firebase/firebase-config";
-import { collection, addDoc, updateDoc, doc } from "firebase/firestore/lite";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore/lite";
 import { types } from "../types/types";
 import { loadNotes } from "../helpers/loadNotes";
 import Swal from "sweetalert2";
@@ -91,3 +97,17 @@ export const startUploading = (file) => {
     dispatch(startSaveNote(activeNote));
   };
 };
+
+export const startDeleting = (id) => {
+  return async (dispatch, getState) => {
+    const { uid } = getState().auth;
+    await deleteDoc(doc(FirebaseDB, `/${uid}/journal/notes/${id}`));
+    dispatch(deleteNote(id));
+    Swal.fire("Deleted!", "Your note has been deleted", "success");
+  };
+};
+
+export const deleteNote = (id) => ({
+  type: types.notesDelete,
+  payload: id,
+});
