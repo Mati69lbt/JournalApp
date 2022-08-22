@@ -45,7 +45,7 @@ const RegisterScren = () => {
   };
 
   return (
-    <div>
+    <div className="animate__animated animate__heartBeat">
       <div>
         <h3 className="auth__title">Register</h3>
         <form onSubmit={handleRegister}>

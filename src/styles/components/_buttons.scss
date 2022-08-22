@@ -49,7 +49,6 @@
   background-color: $google-blue;
   border-radius: 2px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
-
   transition: box-shadow 0.3s ease;
 
   .google-icon-wrapper {
@@ -69,7 +68,7 @@
     height: 18px;
   }
   .btn-text {
-    float: right;
+    text-align: center;
     margin: 11px 40px 0 0;
     color: $white;
     font-size: 14px;
