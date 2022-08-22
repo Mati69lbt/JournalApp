@@ -10,6 +10,7 @@ import { auth, provider } from "../firebase/firebase-config";
 
 import { types } from "../types/types";
 import { finishLoading, startLoading } from "./ui";
+import { noteLogout } from "./notes";
 
 export const startLoginEmailPassword = (email, password) => {
   // MUY IMPORTANTE: se crearon acciones para bloquear el boton mientras se carga la informacion
@@ -61,6 +62,7 @@ export const startLogout = () => {
   return async (dispatch) => {
     await signOut(auth).then(() => {
       dispatch(logout());
+      dispatch(noteLogout());
     });
   };
 };

@@ -8,8 +8,8 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.ui);
   const [formValues, handleInputChange] = useForm({
-    email: "m@yahoo.com",
-    password: "196834",
+    email: "",
+    password: "",
   });
   const { email, password } = formValues;
 
