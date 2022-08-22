@@ -44,10 +44,7 @@ const NotesScreen = () => {
         {note.url && (
           <div className="notes__image">
             {" "}
-            <img
-              src="https://www.dexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw42b55b3e/products/NI_AJ5292-739/NI_AJ5292-739-1.JPG"
-              alt="img"
-            />
+            <img src={note.url} alt="img" />
           </div>
         )}
       </div>
